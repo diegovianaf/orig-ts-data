@@ -1,5 +1,5 @@
-import moedaParaNumero from './moedaParaNumero.js';
-export default function normalizarTransacao(transacao) {
+import currencyToNumber from './currencyToNumber.js';
+export default function normalizeTransaction(transacao) {
     return {
         nome: transacao.Nome,
         id: transacao.ID,
@@ -7,9 +7,9 @@ export default function normalizarTransacao(transacao) {
         status: transacao.Status,
         email: transacao.Email,
         moeda: transacao['Valor (R$)'],
-        valor: moedaParaNumero(transacao['Valor (R$)']),
+        valor: currencyToNumber(transacao['Valor (R$)']),
         pagamento: transacao['Forma de Pagamento'],
         novo: Boolean(transacao['Cliente Novo']),
     };
 }
-//# sourceMappingURL=normalizarTransacao.js.map
+//# sourceMappingURL=normalizeTransaction.js.map

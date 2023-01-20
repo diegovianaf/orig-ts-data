@@ -1,4 +1,4 @@
-import moedaParaNumero from './moedaParaNumero.js'
+import currencyToNumber from './currencyToNumber.js'
 
 declare global {
   type TransacaoPagamento = 'Boleto' | 'Cartão de Crédito'
@@ -33,7 +33,7 @@ declare global {
   }
 }
 
-export default function normalizarTransacao(transacao: TransacaoAPI) {
+export default function normalizeTransaction(transacao: TransacaoAPI) {
   return {
     nome: transacao.Nome,
     id: transacao.ID,
@@ -41,7 +41,7 @@ export default function normalizarTransacao(transacao: TransacaoAPI) {
     status: transacao.Status,
     email: transacao.Email,
     moeda: transacao['Valor (R$)'],
-    valor: moedaParaNumero(transacao['Valor (R$)']),
+    valor: currencyToNumber(transacao['Valor (R$)']),
     pagamento: transacao['Forma de Pagamento'],
     novo: Boolean(transacao['Cliente Novo']),
   }
