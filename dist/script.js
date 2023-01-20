@@ -4,8 +4,8 @@ async function handleData() {
     const data = await fetchData('https://api.origamid.dev/json/transacoes.json?');
     if (!data)
         return;
-    const transacoes = data.map(normalizeTransaction);
-    console.log(transacoes);
+    const transactions = data.map(normalizeTransaction);
+    console.log(transactions);
 }
 handleData();
 //# sourceMappingURL=script.js.map

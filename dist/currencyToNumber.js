@@ -1,5 +1,5 @@
 export default function currencyToNumber(moeda) {
-    const numero = Number(moeda.replaceAll('.', '').replace(',', '.'));
-    return isNaN(numero) ? null : numero;
+    const amountNumber = Number(moeda.replaceAll('.', '').replace(',', '.'));
+    return isNaN(amountNumber) ? null : amountNumber;
 }
 //# sourceMappingURL=currencyToNumber.js.map

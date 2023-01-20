@@ -1,48 +1,48 @@
 import currencyToNumber from './currencyToNumber.js'
 
 declare global {
-  type TransacaoPagamento = 'Boleto' | 'Cartão de Crédito'
-  type TransacaoStatus =
+  type TransactionPayment = 'Boleto' | 'Cartão de Crédito'
+  type TransactionStatus =
     | 'Paga'
     | 'Recusada pela operadora de cartão'
     | 'guardando pagamento'
     | 'Estornada'
 
-  interface TransacaoAPI {
+  interface TransactionAPI {
     Nome: string
     ID: number
     Data: string
-    Status: TransacaoStatus
+    Status: TransactionStatus
     Email: string
     Valor: string
     ['Valor (R$)']: string
-    ['Forma de Pagamento']: TransacaoPagamento
+    ['Forma de Pagamento']: TransactionPayment
     ['Cliente Novo']: number
   }
 
-  interface Transacao {
+  interface Transaction {
     nome: string
     id: number
     data: string
-    status: TransacaoStatus
+    status: TransactionStatus
     email: string
     moeda: string
     valor: number | null
-    pagamento: TransacaoPagamento
+    pagamento: TransactionPayment
     novo: boolean
   }
 }
 
-export default function normalizeTransaction(transacao: TransacaoAPI) {
+export default function normalizeTransaction(transaction: TransactionAPI) {
   return {
-    nome: transacao.Nome,
-    id: transacao.ID,
-    data: transacao.Data,
-    status: transacao.Status,
-    email: transacao.Email,
-    moeda: transacao['Valor (R$)'],
-    valor: currencyToNumber(transacao['Valor (R$)']),
-    pagamento: transacao['Forma de Pagamento'],
-    novo: Boolean(transacao['Cliente Novo']),
+    nome: transaction.Nome,
+    id: transaction.ID,
+    data: transaction.Data,
+    status: transaction.Status,
+    email: transaction.Email,
+    moeda: transaction['Valor (R$)'],
+    valor: currencyToNumber(transaction['Valor (R$)']),
+    pagamento: transaction['Forma de Pagamento'],
+    novo: Boolean(transaction['Cliente Novo']),
   }
 }

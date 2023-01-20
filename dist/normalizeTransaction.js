@@ -1,15 +1,15 @@
 import currencyToNumber from './currencyToNumber.js';
-export default function normalizeTransaction(transacao) {
+export default function normalizeTransaction(transaction) {
     return {
-        nome: transacao.Nome,
-        id: transacao.ID,
-        data: transacao.Data,
-        status: transacao.Status,
-        email: transacao.Email,
-        moeda: transacao['Valor (R$)'],
-        valor: currencyToNumber(transacao['Valor (R$)']),
-        pagamento: transacao['Forma de Pagamento'],
-        novo: Boolean(transacao['Cliente Novo']),
+        nome: transaction.Nome,
+        id: transaction.ID,
+        data: transaction.Data,
+        status: transaction.Status,
+        email: transaction.Email,
+        moeda: transaction['Valor (R$)'],
+        valor: currencyToNumber(transaction['Valor (R$)']),
+        pagamento: transaction['Forma de Pagamento'],
+        novo: Boolean(transaction['Cliente Novo']),
     };
 }
 //# sourceMappingURL=normalizeTransaction.js.map
