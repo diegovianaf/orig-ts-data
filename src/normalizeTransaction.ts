@@ -1,4 +1,5 @@
 import currencyToNumber from './currencyToNumber.js'
+import stringToDate from './stringToDate.js'
 
 declare global {
   type TransactionPayment = 'Boleto' | 'Cartão de Crédito'
@@ -37,7 +38,7 @@ export default function normalizeTransaction(transaction: TransactionAPI) {
   return {
     nome: transaction.Nome,
     id: transaction.ID,
-    data: transaction.Data,
+    data: stringToDate(transaction.Data),
     status: transaction.Status,
     email: transaction.Email,
     moeda: transaction['Valor (R$)'],
