@@ -22,28 +22,30 @@ declare global {
   }
 
   interface Transaction {
-    nome: string
+    fullName: string
     id: number
-    data: string
+    date: Date
     status: TransactionStatus
     email: string
-    moeda: string
-    valor: number | null
-    pagamento: TransactionPayment
+    amount: string
+    amountNumber: number | null
+    payment: TransactionPayment
     novo: boolean
   }
 }
 
-export default function normalizeTransaction(transaction: TransactionAPI) {
+export default function normalizeTransaction(
+  transaction: TransactionAPI
+): Transaction {
   return {
-    nome: transaction.Nome,
+    fullName: transaction.Nome,
     id: transaction.ID,
-    data: stringToDate(transaction.Data),
+    date: stringToDate(transaction.Data),
     status: transaction.Status,
     email: transaction.Email,
-    moeda: transaction['Valor (R$)'],
-    valor: currencyToNumber(transaction['Valor (R$)']),
-    pagamento: transaction['Forma de Pagamento'],
+    amount: transaction['Valor (R$)'],
+    amountNumber: currencyToNumber(transaction['Valor (R$)']),
+    payment: transaction['Forma de Pagamento'],
     novo: Boolean(transaction['Cliente Novo']),
   }
 }

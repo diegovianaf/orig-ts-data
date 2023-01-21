@@ -7,8 +7,23 @@ async function handleData() {
   )
   if (!data) return
   const transactions = data.map(normalizeTransaction)
+  fillTable(transactions)
+}
 
-  console.log(transactions)
+function fillTable(transactions: Transaction[]): void {
+  const table = document.querySelector('#transactions tbody')
+  if (!table) return
+  transactions.forEach((transaction) => {
+    table.innerHTML += `
+      <tr>
+        <td>${transaction.fullName}</>
+        <td>${transaction.email}</>
+        <td>R$: ${transaction.amount}</>
+        <td>${transaction.payment}</>
+        <td>${transaction.status}</>
+      </tr>
+    `
+  })
 }
 
 handleData()

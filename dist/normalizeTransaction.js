@@ -2,14 +2,14 @@ import currencyToNumber from './currencyToNumber.js';
 import stringToDate from './stringToDate.js';
 export default function normalizeTransaction(transaction) {
     return {
-        nome: transaction.Nome,
+        fullName: transaction.Nome,
         id: transaction.ID,
-        data: stringToDate(transaction.Data),
+        date: stringToDate(transaction.Data),
         status: transaction.Status,
         email: transaction.Email,
-        moeda: transaction['Valor (R$)'],
-        valor: currencyToNumber(transaction['Valor (R$)']),
-        pagamento: transaction['Forma de Pagamento'],
+        amount: transaction['Valor (R$)'],
+        amountNumber: currencyToNumber(transaction['Valor (R$)']),
+        payment: transaction['Forma de Pagamento'],
         novo: Boolean(transaction['Cliente Novo']),
     };
 }
