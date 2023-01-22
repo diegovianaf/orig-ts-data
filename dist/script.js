@@ -9,15 +9,24 @@ async function handleData() {
     fillTable(transactions);
     fillStatistics(transactions);
 }
+function fillList(list, containerId) {
+    const containerElement = document.getElementById(containerId);
+    if (containerElement) {
+        Object.keys(list).forEach((key) => {
+            containerElement.innerHTML += `<p>${key}: ${list[key]}</p>`;
+        });
+    }
+}
 function fillStatistics(transactions) {
     const data = new Statistics(transactions);
-    console.log(data);
     const totalElement = document.querySelector('#total span');
     if (totalElement)
         totalElement.innerText = data.total.toLocaleString('pt-br', {
             style: 'currency',
             currency: 'BRL',
         });
+    fillList(data.payment, 'payment');
+    fillList(data.status, 'status');
 }
 function fillTable(transactions) {
     const table = document.querySelector('#transactions tbody');
