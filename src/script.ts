@@ -26,13 +26,18 @@ function fillStatistics(transactions: Transaction[]): void {
   const data = new Statistics(transactions)
   
   const totalElement = document.querySelector<HTMLElement>('#total span')
-  if (totalElement) totalElement.innerText = data.total.toLocaleString('pt-br', {
-    style: 'currency',
-    currency: 'BRL',
-  })
+  if (totalElement) {
+    totalElement.innerText = data.total.toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+  }
 
   fillList(data.payment, 'payment')
   fillList(data.status, 'status')
+
+  const dayElement = document.querySelector<HTMLElement>('#day span')
+  if (dayElement) dayElement.innerText = data.bestDay[0]
 }
 
 function fillTable(transactions: Transaction[]): void {

@@ -20,13 +20,17 @@ function fillList(list, containerId) {
 function fillStatistics(transactions) {
     const data = new Statistics(transactions);
     const totalElement = document.querySelector('#total span');
-    if (totalElement)
+    if (totalElement) {
         totalElement.innerText = data.total.toLocaleString('pt-br', {
             style: 'currency',
             currency: 'BRL',
         });
+    }
     fillList(data.payment, 'payment');
     fillList(data.status, 'status');
+    const dayElement = document.querySelector('#day span');
+    if (dayElement)
+        dayElement.innerText = data.bestDay[0];
 }
 function fillTable(transactions) {
     const table = document.querySelector('#transactions tbody');
