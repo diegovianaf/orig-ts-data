@@ -11,6 +11,7 @@ async function handleData() {
 }
 function fillStatistics(transactions) {
     const data = new Statistics(transactions);
+    console.log(data);
     const totalElement = document.querySelector('#total span');
     if (totalElement)
         totalElement.innerText = data.total.toLocaleString('pt-br', {
